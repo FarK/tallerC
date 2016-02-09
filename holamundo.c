@@ -7,37 +7,37 @@
 // Macros del preprocesador
 #define LEN 256
 
-enum tipos_datos {
-	NOMBRE = 0,
-	APELLIDO1,
-	APELLIDO2,
-	DNI,
-	TLFNO
+struct datos {
+	char nombre[LEN];
+	char apellido1[LEN];
+	char apellido2[LEN];
+	char dni[LEN];
+	int telefono;
 };
 
 // Entrada al programa
 int main() {
-	char datos[5][LEN];
+	struct datos persona1;
 
 	/* Ojo con scanf! */
 	printf("> ¿Cómo te llamas?\n");
-	scanf("%256s", datos[NOMBRE]);
+	scanf("%256s", persona1.nombre);
 
 	printf("> ¿Cuál es tu primer apellido?\n");
-	scanf("%256s", datos[APELLIDO1]);
+	scanf("%256s", persona1.apellido1);
 
 	printf("> ¿Cuál es tu segundo apellido?\n");
-	scanf("%256s", datos[APELLIDO2]);
+	scanf("%256s", persona1.apellido2);
 
 	printf("> ¿Cuál es tu DNI?\n");
-	scanf("%10s", datos[DNI]);
+	scanf("%10s", persona1.dni);
 
 	printf("> ¿Cuál es tu teléfono?\n");
-	scanf("%9s", datos[TLFNO]);
+	scanf("%9d", &persona1.telefono);
 
 	printf("> Hola %s %s %s!"
 	       "\n\tDNI  = %s"
-	       "\n\ttlfn = %s\n",
-	       datos[NOMBRE], datos[APELLIDO1], datos[APELLIDO2],
-	       datos[DNI], datos[TLFNO]);
+	       "\n\ttlfn = %d\n",
+	       persona1.nombre, persona1.apellido1, persona1.apellido2,
+	       persona1.dni, persona1.telefono);
 }
