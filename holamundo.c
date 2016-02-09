@@ -15,36 +15,51 @@ struct datos {
 	int telefono;
 };
 
-void pregunta_datos();
+struct datos pregunta_datos();
+void imprime_datos(struct datos persona);
 
 // Entrada al programa
 int main() {
-	pregunta_datos();
+	struct datos persona1, persona2;
+
+	printf("DATOS PERSONA 1\n");
+	persona1 = pregunta_datos();
+
+	printf("DATOS PERSONA 2\n");
+	persona2 = pregunta_datos();
+
+	imprime_datos(persona1);
+	imprime_datos(persona2);
 }
 
-void pregunta_datos()
+struct datos pregunta_datos()
 {
-	struct datos persona1;
+	struct datos persona;
 
 	/* Ojo con scanf! */
 	printf("> ¿Cómo te llamas?\n");
-	scanf("%256s", persona1.nombre);
+	scanf("%256s", persona.nombre);
 
 	printf("> ¿Cuál es tu primer apellido?\n");
-	scanf("%256s", persona1.apellido1);
+	scanf("%256s", persona.apellido1);
 
 	printf("> ¿Cuál es tu segundo apellido?\n");
-	scanf("%256s", persona1.apellido2);
+	scanf("%256s", persona.apellido2);
 
 	printf("> ¿Cuál es tu DNI?\n");
-	scanf("%10s", persona1.dni);
+	scanf("%10s", persona.dni);
 
 	printf("> ¿Cuál es tu teléfono?\n");
-	scanf("%9d", &persona1.telefono);
+	scanf("%9d", &persona.telefono);
 
+	return persona;
+}
+
+void imprime_datos(struct datos persona)
+{
 	printf("> Hola %s %s %s!"
 	       "\n\tDNI  = %s"
 	       "\n\ttlfn = %d\n",
-	       persona1.nombre, persona1.apellido1, persona1.apellido2,
-	       persona1.dni, persona1.telefono);
+	       persona.nombre, persona.apellido1, persona.apellido2,
+	       persona.dni, persona.telefono);
 }
