@@ -6,39 +6,49 @@
 
 // Entrada al programa
 int main() {
-	int array[4] = {11, 22, 33, 44};
+	int i = 42;
+	int j = 3;
+	int *pi = &i;	// Puntero de entero
 
-	array[2] = 0;
+	printf("valor de i = %d\n", i);
+	printf("valor de j = %d\n\n", j);
 
-	int i;
-	printf("array = {\n");
-	for (i = 0; i < 4; i++)
-		printf("\t[%d] = %d\n", i, array[i]);
-	printf("}\n");
+	// VALOR -> DIRECCIÓN (&)
+	// Dirección de memoria dónde está guardada i
+	printf("dir de i    = %p\n", &i);
 
+	// DIRECCIÓN -> VALOR (*)
+	// VALOR guardado en la dirección que guarda pi
+	printf("valor en pi = %d\n\n", *pi);
 
-	/***********
-	 * CADENAS *
-	 ***********/
-	// Declaración con tamaño explicito e inicialización de cada elemento
-	char hola[5] = {'h', 'o', 'l', 'a', '\0'};
-	printf("\nhola = {\n");
-	for (i = 0; i < 4; i++)
-		printf("\t[%d] = %c\n", i, hola[i]);
-	printf("}\n");
+	// INICIALIZACIÓN
+	int *pj = &j;
 
-	printf("\nhola = \"%s\"\n", hola);
+	// EJEMPLOS ASIGNACIONES
+	// pi guarda la DIRECCIÓN de memoria donde está guardada i
+	pi = &i;
+	printf("dir en pi  = %p\n", pi);
 
+	/*
+	 * a j se le asigna el VALOR almacenado en la DIRECCIÓN de memoria que
+	 * guarda pi
+	 */
+	printf("\n*pi = *pj\n");
+	printf("\tvalor de j = %d\t(antes)\n", j);
+	j  = *pi;
+	printf("\tvalor de j = %d\t(después)\n", j);
 
-	// Declaración con tamaño implícito e inicialización como cadena
-	char mundo[] = "mundo";
+	// se guarda el VALOR de i en la DIRECCIÓN de memoria que guarda pi
+	*pi = i;
 
-	printf("\nmundo = {\n");
-	for (i = 0; i < 5; i++)
-		printf("\t[%d] = %c\n", i, mundo[i]);
-	printf("}\n");
-
-	printf("\nmundo = \"%s\"\n", mundo);
+	/*
+	 * Se guarda el VALOR almacenado en la DIRECCIÓN de memoria que guarda
+	 * pj, en la DIRECCIÓN de pi
+	 */
+	printf("\n*pi = *pj\n");
+	printf("\tvalor de i = %d\t(antes)\n", i);
+	*pi = *pj;
+	printf("\tvalor de i = %d\t(antes)\n", i);
 
 	return 0;
 }
