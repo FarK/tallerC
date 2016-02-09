@@ -15,8 +15,15 @@ struct datos {
 	int telefono;
 };
 
+void pregunta_datos();
+
 // Entrada al programa
 int main() {
+	pregunta_datos();
+}
+
+void pregunta_datos()
+{
 	struct datos persona1;
 
 	/* Ojo con scanf! */
