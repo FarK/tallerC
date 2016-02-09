@@ -6,49 +6,58 @@
 
 // Entrada al programa
 int main() {
-	int i = 42;
-	int j = 3;
-	int *pi = &i;	// Puntero de entero
+	int array[] = {1, 2, 3, 4, 5};
+	int *p;
 
-	printf("valor de i = %d\n", i);
-	printf("valor de j = %d\n\n", j);
+	// MODIFICANDO ARRAY A TRAVÉS DEL PUNTERO
+	// p apuntado a la primera dirección del array
+	p = array;
+	p = &array[0];
 
-	// VALOR -> DIRECCIÓN (&)
-	// Dirección de memoria dónde está guardada i
-	printf("dir de i    = %p\n", &i);
+	// Incremento de punteros
+	p += 1;
+	printf("*p = %d\n\n", *p);
+	p--;
 
-	// DIRECCIÓN -> VALOR (*)
-	// VALOR guardado en la dirección que guarda pi
-	printf("valor en pi = %d\n\n", *pi);
+	// Modificamos el array
+	printf("*p = %d\n", *p);
+	*p = 11;
+	printf("array[0] = %d\n", array[0]);
 
-	// INICIALIZACIÓN
-	int *pj = &j;
+	// Puntero como array
+	p[2] = 33;
+	printf("array[2] = %d\n", array[2]);
 
-	// EJEMPLOS ASIGNACIONES
-	// pi guarda la DIRECCIÓN de memoria donde está guardada i
-	pi = &i;
-	printf("dir en pi  = %p\n", pi);
+	// PUNTEROS Y CADENAS
+	const char *cadena = "asdf";
+	printf("\ncadena = \"%s\"\n", cadena);
 
-	/*
-	 * a j se le asigna el VALOR almacenado en la DIRECCIÓN de memoria que
-	 * guarda pi
-	 */
-	printf("\n*pi = *pj\n");
-	printf("\tvalor de j = %d\t(antes)\n", j);
-	j  = *pi;
-	printf("\tvalor de j = %d\t(después)\n", j);
+	// USANDO PUNTEROS PARA RECORRER ARRAYS
+	printf("\nRECORRIENDO ARRAY\n");
+	int i;
+	p = array;
 
-	// se guarda el VALOR de i en la DIRECCIÓN de memoria que guarda pi
-	*pi = i;
+	// forma 1: Contador e incremento de puntero
+	printf("forma 1\n\t");
+	for (i = 0; i < 5; i++)
+		printf("%d\t", *p++);
 
-	/*
-	 * Se guarda el VALOR almacenado en la DIRECCIÓN de memoria que guarda
-	 * pj, en la DIRECCIÓN de pi
-	 */
-	printf("\n*pi = *pj\n");
-	printf("\tvalor de i = %d\t(antes)\n", i);
-	*pi = *pj;
-	printf("\tvalor de i = %d\t(antes)\n", i);
+	// forma 2: Incremento de puntero y comparación de direcciones
+	printf("\nforma 2\n\t");
+	for (p = array; p <= &array[4]; p++)
+		printf("%d\t", *p);
 
-	return 0;
+	// forma 3: Contador y puntero como array
+	printf("\nforma 3\n\t");
+	for (i = 0, p = array; i < 5; i++)
+		printf("%d\t", p[i]);
+
+	printf("\n");
+
+
+	// JUGANDO CON PUNTEROS
+	int magic = '\0' << 3*8 | 'y' << 2*8 | 'a' << 1*8 | 'w';
+	magic = 0x00796177;
+	printf("\nmagic = %0X\n", magic);
+	printf("magic = \"%s\"\n", (char *)(&magic));
 }
